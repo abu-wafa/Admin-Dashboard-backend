@@ -1,9 +1,14 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
-
-app.use(cors());
+const allowedOrigins = [
+  process.env.FRONTEND_URL || "https://admin-dashboard-nine-beta-38.vercel.app",
+  "http://localhost:5173",
+];
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
 let users = [
   {
@@ -304,7 +309,7 @@ app.delete("/api/products/:id", (req, res) => {
   );
   res.json("Product deleted!");
 });
-
-app.listen(8800, () => {
+const port = process.env.PORT || 8800;
+app.listen(port, () => {
   console.log("Connected to backend.");
 });
