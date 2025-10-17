@@ -298,7 +298,7 @@ app.get("/api/products/:id", (req, res) => {
 app.post("/api/products", (req, res) => {
   const id = products.length + 1;
   const newProduct = { id, ...req.body };
-  products.push(newProduct);
+  products.unshift(newProduct);
   res.json(products);
 });
 
