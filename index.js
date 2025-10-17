@@ -271,7 +271,7 @@ app.get("/api/users/:id", (req, res) => {
 app.post("/api/users", (req, res) => {
   const id = users.length + 1;
   const newUser = { id, ...req.body };
-  users.push(newUser);
+  users.unshift(newUser);
   res.json(users);
 });
 
