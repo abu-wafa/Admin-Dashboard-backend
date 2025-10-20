@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import serverless from "serverless-http";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -310,4 +309,4 @@ app.delete("/api/products/:id", (req, res) => {
   );
   res.json("Product deleted!");
 });
-export const handler = serverless(app);
+export default app;
