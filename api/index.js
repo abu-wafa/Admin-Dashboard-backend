@@ -258,18 +258,18 @@ let products = [
 ];
 
 // GET USERS
-app.get("/users", (req, res) => {
+app.get("/api/users", (req, res) => {
   res.json(users);
 });
 
 // GET USER
-app.get("/users/:id", (req, res) => {
+app.get("/api/users/:id", (req, res) => {
   const user = users.find((user) => user.id === parseInt(req.params.id));
   res.json(user);
 });
 
 // ADD USER
-app.post("/users", (req, res) => {
+app.post("/api/users", (req, res) => {
   const id = users.length + 1;
   const newUser = { id, ...req.body };
   users.unshift(newUser);
@@ -277,18 +277,18 @@ app.post("/users", (req, res) => {
 });
 
 // DELETE USER
-app.delete("/users/:id", (req, res) => {
+app.delete("/api/users/:id", (req, res) => {
   users = users.filter((user) => user.id !== parseInt(req.params.id));
   res.json("User deleted!");
 });
 
 // GET PRODUCTS
-app.get("/products", (req, res) => {
+app.get("/api/products", (req, res) => {
   res.json(products);
 });
 
 // GET PRODUCT
-app.get("/products/:id", (req, res) => {
+app.get("/api/products/:id", (req, res) => {
   const product = products.find(
     (product) => product.id === parseInt(req.params.id)
   );
@@ -296,7 +296,7 @@ app.get("/products/:id", (req, res) => {
 });
 
 // ADD PRODUCT
-app.post("/products", (req, res) => {
+app.post("/api/products", (req, res) => {
   const id = products.length + 1;
   const newProduct = { id, ...req.body };
   products.unshift(newProduct);
@@ -304,15 +304,10 @@ app.post("/products", (req, res) => {
 });
 
 // DELETE PRODUCT
-app.delete("/products/:id", (req, res) => {
+app.delete("/api/products/:id", (req, res) => {
   products = products.filter(
     (product) => product.id !== parseInt(req.params.id)
   );
   res.json("Product deleted!");
 });
-//// start the server for local development
-// const port = process.env.PORT || 8800;
-// app.listen(port, () => {
-//   console.log("Connected to backend.");
-// });
 export const handler = serverless(app);
