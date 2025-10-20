@@ -5,7 +5,8 @@ import dotenv from "dotenv";
 dotenv.config();
 const app = express();
 const allowedOrigins = [
-  process.env.FRONTEND_URL || "https://admin-dashboard-nine-beta-38.vercel.app",
+  process.env.FRONTEND_URL,
+  "https://admin-dashboard-nine-beta-38.vercel.app",
   "http://localhost:5173",
 ];
 app.use(cors({ origin: allowedOrigins, credentials: true }));
